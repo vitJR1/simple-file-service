@@ -37,6 +37,6 @@ authRouter.post("/signup", authValidation, asyncHandler(signup));
 
 authRouter.get("/info", authorization, asyncHandler(userInfo));
 
-authRouter.get("/logout", authorization, asyncHandler(logout));
+authRouter.get("/logout", asyncHandler(logout));
 
 export { authRouter };

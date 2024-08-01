@@ -1,9 +1,14 @@
 import { File } from "../../core/db/index.js";
 import path from "path";
 import { deleteFile } from "./utils/deleteFile.js";
+import { RequestError } from "../../routes/utils/RequestError.js";
 
 export const updateFile = async ({ file, user, params }) => {
   const oldFileData = await File.findByPk(params.id);
+  if (oldFileData === null) {
+    throw new RequestError("File not found", 404);
+  }
+
   deleteFile(path.join(oldFileData.destination, oldFileData.hash));
   return await File.update(
     {

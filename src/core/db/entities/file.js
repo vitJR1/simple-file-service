@@ -4,7 +4,7 @@ import sequelize from "../init.js";
 const File = sequelize.define("files", {
   name: {
     type: DataTypes.STRING,
-    allowNull: false, // You can specify if the field is required
+    allowNull: false,
   },
   ext: {
     type: DataTypes.STRING,
@@ -23,7 +23,7 @@ const File = sequelize.define("files", {
     allowNull: false,
   },
   size: {
-    type: DataTypes.INTEGER, // Use INTEGER instead of NUMBER for size
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
 });

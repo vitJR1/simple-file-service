@@ -1,5 +1,6 @@
 export const config = {
   port: process.env.PORT,
-  secret: process.env.SECRET,
+  accessSecret: process.env.ACCESS_SECRET,
+  refreshSecret: process.env.REFRESH_SECRET,
   db: process.env.DB_URI,
 };

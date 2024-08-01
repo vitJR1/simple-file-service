@@ -1,6 +1,6 @@
 import { compareSync } from "bcrypt";
 
-import { User } from "../../core/db/index.js";
+import { Token, User } from "../../core/db/index.js";
 import { RequestError } from "../../routes/utils/RequestError.js";
 import jwt from "jsonwebtoken";
 import { config } from "../../core/config/index.js";
@@ -18,7 +18,7 @@ export const singin = async ({ body }) => {
     {
       id: user.id,
     },
-    config.secret,
+    config.refreshSecret,
     {
       expiresIn: "30d",
     },
@@ -28,11 +28,16 @@ export const singin = async ({ body }) => {
     {
       id: user.id,
     },
-    config.secret,
+    config.accessSecret,
     {
       expiresIn: "10m",
     },
   );
+
+  await Token.create({
+    userId: user.id,
+    token: refreshToken,
+  });
 
   return {
     accessToken,
