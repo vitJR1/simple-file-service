@@ -8,15 +8,15 @@ export default function (func) {
       return res.status(400).json({ errors: errors.array() });
     }
     try {
-      res.status(200).send(
-        await func({
-          user: req.user,
-          param: req.param,
-          body: req.body,
-          query: req.query,
-          headers: req.headers,
-        }),
-      );
+      const result = await func({
+        user: req.user,
+        params: req.params,
+        body: req.body,
+        file: req.file,
+        query: req.query,
+        headers: req.headers,
+      });
+      res.status(200).send(result);
     } catch (e) {
       console.log(e);
       if (e.constructor.name === "RequestError") {

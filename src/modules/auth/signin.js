@@ -1,6 +1,6 @@
 import { compareSync } from "bcrypt";
 
-import { User } from "../users/entity/user.js";
+import { User } from "../../core/db/index.js";
 import { RequestError } from "../../routes/utils/RequestError.js";
 import jwt from "jsonwebtoken";
 import { config } from "../../core/config/index.js";

@@ -1,5 +1,5 @@
 import { hashSync, genSaltSync } from "bcrypt";
-import { User } from "../users/entity/user.js";
+import { User } from "../../core/db/index.js";
 
 export const signup = async ({ body }) => {
   return await User.create({

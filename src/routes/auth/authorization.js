@@ -8,7 +8,8 @@ export const authorization = async (req, res, next) => {
     req.user = jwt.verify(token, config.secret);
 
     next();
-  } catch {
+  } catch (e) {
+    console.log(e);
     res.status(401).send("Unauthorized");
   }
 };
