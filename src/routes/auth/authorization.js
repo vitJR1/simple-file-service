@@ -3,9 +3,11 @@ import { config } from "../../core/config/index.js";
 
 export const authorization = async (req, res, next) => {
   try {
-    const token = req.headers.authorization;
+    const [type, token] = req.headers.authorization.split(" ");
 
-    req.user = jwt.verify(token, config.secret);
+    console.log(type, token);
+
+    req.user = jwt.verify(token, config.accessSecret);
 
     next();
   } catch (e) {

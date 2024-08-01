@@ -25,5 +25,7 @@ export const updateFile = async ({ file, user, params }) => {
         id: params.id,
       },
     },
-  );
+  ).then(async () => {
+    return await File.findByPk(params.id);
+  });
 };

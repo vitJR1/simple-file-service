@@ -4,10 +4,42 @@ import { fileRouter } from "./file.js";
 
 const router = Router();
 
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Base route
+ *     tags:
+ *       - Common
+ *     responses:
+ *       200:
+ *         description: Returns a simple "OK" message
+ *         content:
+ *           text/plain:
+ *             schema:
+ *               type: string
+ *               example: OK
+ */
 router.get("/", async (req, res) => {
   res.send("OK");
 });
 
+/**
+ * @swagger
+ * /health:
+ *   get:
+ *     summary: Health check or basic route to ensure the API is running
+ *     tags:
+ *       - Health Check
+ *     responses:
+ *       200:
+ *         description: Returns a simple "I'm alive!" message
+ *         content:
+ *           text/plain:
+ *             schema:
+ *               type: string
+ *               example: OK
+ */
 router.get("/health", async (req, res) => {
   res.send("I'm alive!");
 });
