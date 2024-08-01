@@ -1,5 +1,4 @@
 import { validationResult } from "express-validator";
-import { RequestError } from "./RequestError.js";
 
 export default function (func) {
   return async (req, res) => {

@@ -1,7 +1,7 @@
 import { File } from "../../core/db/index.js";
 import path from "path";
 
-export const uploadFile = async ({ body, file, user }) => {
+export const uploadFile = async ({ file, user }) => {
   return await File.create({
     name: file.originalname,
     ext: path.extname(file.originalname),
