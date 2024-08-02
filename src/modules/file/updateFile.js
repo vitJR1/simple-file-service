@@ -4,6 +4,9 @@ import { deleteFile } from "./utils/deleteFile.js";
 import { RequestError } from "../../routes/utils/RequestError.js";
 
 export const updateFile = async ({ file, user, params }) => {
+  if (file === undefined) {
+    throw new RequestError("File required");
+  }
   const oldFileData = await File.findByPk(params.id);
   if (oldFileData === null) {
     throw new RequestError("File not found", 404);

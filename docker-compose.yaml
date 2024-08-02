@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: sfs-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sfs
+    ports:
+      - "3306:3306"
+    volumes:
+      - sfs-mysql-data:/var/lib/mysql
+      - ./db-init.sql:/docker-entrypoint-initdb.d/db-init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost" ]
+      interval: 3s
+      timeout: 10s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sfs-app
+    environment:
+      PORT: 3000
+      ACCESS_SECRET: "jioah8923roielfeioaeoeiojf"
+      REFRESH_SECRET: "lkangsdjngsdkl12i2orf0wnef"
+      DB_URI: "mysql://root:root@mysql:3306/sfs"
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  sfs-mysql-data:

@@ -9,6 +9,7 @@ File.belongsTo(User, { foreignKey: "userId", as: "user" });
 User.hasMany(Token, { foreignKey: "userId", as: "tokens" });
 Token.belongsTo(User, { foreignKey: "userId", as: "user" });
 
+// await sequelize.authenticate();
 await sequelize.sync();
 
 export { User, File, Token };
