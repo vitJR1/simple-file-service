@@ -12,4 +12,4 @@
     ```sh
     docker-compose up -d
     ```
-4. Go to `http://localhost:3000`
+4. Go to `http://localhost:3000/api-docs`
